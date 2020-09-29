@@ -1,0 +1,10 @@
+---
+- name: save config
+  hosts: routers
+  gather_facts: False
+  tasks:
+    - name: write config
+      ios_command:
+        commands:
+        - write
+        

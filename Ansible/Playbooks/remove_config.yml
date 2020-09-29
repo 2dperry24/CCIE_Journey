@@ -1,0 +1,101 @@
+---
+- name: Remove Config
+  hosts: routers
+  gather_facts: True
+  tasks:
+    - name: delete IP Protocols
+      ios_command:
+        commands:
+        - configure terminal
+        - no router eigrp 100
+        - no router bgp 100
+        - no router bgp 3
+        - no router bgp 54
+    - name: remove interfaces
+      ios_interface:
+        name: "{{ item.name }}"
+        state: absent
+      loop:
+        - { name: "GigabitEthernet1.5"}
+        - { name: "GigabitEthernet1.7"}
+        - { name: "GigabitEthernet1.8"}
+        - { name: "GigabitEthernet1.9"}
+        - { name: "GigabitEthernet1.10"}
+        - { name: "GigabitEthernet1.12"}
+        - { name: "GigabitEthernet1.13"}
+        - { name: "GigabitEthernet1.23"}
+        - { name: "GigabitEthernet1.24"}
+        - { name: "GigabitEthernet1.35"}
+        - { name: "GigabitEthernet1.37"}
+        - { name: "GigabitEthernet1.39"}
+        - { name: "GigabitEthernet1.45"}
+        - { name: "GigabitEthernet1.46"}
+        - { name: "GigabitEthernet1.48"}
+        - { name: "GigabitEthernet1.56"}
+        - { name: "GigabitEthernet1.57"}
+        - { name: "GigabitEthernet1.58"}
+        - { name: "GigabitEthernet1.67"}
+        - { name: "GigabitEthernet1.68"}
+        - { name: "GigabitEthernet1.79"}
+        - { name: "GigabitEthernet1.100"}
+        - { name: "GigabitEthernet1.103"}
+        - { name: "GigabitEthernet1.108"}
+        - { name: "GigabitEthernet1.109"}
+        - { name: "GigabitEthernet1.146"}
+        - { name: "GigabitEthernet1.212"}
+        - { name: "GigabitEthernet1.221"}
+        - { name: "GigabitEthernet1.222"}
+        - { name: "Loopback0"}
+        - { name: "Loopback1"}
+        - { name: "Loopback2"}
+        - { name: "Loopback3"}
+        - { name: "Loopback4"}
+        - { name: "Loopback5"}
+        - { name: "Loopback6"}
+        - { name: "Loopback7"}
+        - { name: "Loopback8"}
+        - { name: "Loopback9"}
+        - { name: "Loopback10"}
+        - { name: "Loopback11"}
+        - { name: "Loopback12"}
+        - { name: "Loopback13"}
+        - { name: "Loopback14"}
+        - { name: "Loopback15"}
+        - { name: "Loopback16"}
+        - { name: "Loopback17"}
+        - { name: "Loopback18"}
+        - { name: "Loopback19"}
+        - { name: "Loopback20"}
+        - { name: "Loopback21"}
+        - { name: "Loopback112"}
+        - { name: "Loopback113"}
+        - { name: "Loopback114"}
+        - { name: "Loopback115"}
+        - { name: "Loopback116"}
+        - { name: "Loopback117"}
+        - { name: "Loopback118"}
+        - { name: "Loopback119"}
+        - { name: "Loopback120"}
+        - { name: "Loopback51001"}
+        - { name: "Loopback51101"}
+        - { name: "Loopback51201"}
+        - { name: "Loopback51301"}
+        - { name: "Loopback51401"}
+        - { name: "Loopback51501"}
+        - { name: "Loopback51601"}
+        - { name: "Loopback51701"}
+        - { name: "Loopback200000"}
+        - { name: "Loopback200010"}
+        - { name: "Loopback200020"}
+        - { name: "Loopback200030"}
+        - { name: "Loopback2121801"}
+        - { name: "Loopback2121811"}
+        - { name: "Loopback2121821"}
+        - { name: "Loopback2121831"}
+
+
+        - { name: "Tunnel0"}
+    - name: save running to startup when modified
+      ios_config:
+        save_when: modified
+      
